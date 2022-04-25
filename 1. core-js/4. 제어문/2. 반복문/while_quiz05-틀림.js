@@ -1,6 +1,6 @@
 var number = +prompt('양의 정수를 입력하세요.');
 
-var reverse
+// var reverse
 
 var start = 1
 
