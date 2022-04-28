@@ -1,4 +1,4 @@
-
+// 한 반의 4과목 평균 점수를 알고 싶다.
 
 // 우리반 학생 3명의 4과목 시험 점수 (국영수탐)
 var scoreList = [
@@ -7,35 +7,30 @@ var scoreList = [
     [100, 92, 100, 100]
 ];
 
-// 각 개인의 평균점수와 학급평균을 구하고 싶다.
+// 개인별 평균점수를 구하여 한 배열에 저장한 후, 그 배열 요소들로 학급 평균을 구하자.
+// 먼저 개인별 평균 점수를 구하자.
 
-// 개인들의 평균점수부터 구하자.
-var averageList = []; // 각 학생의 평균들을 저장할 배열.
+var persenalAvg = []; // 개인별 평균 점수를 저장할 변수.
 
-for (var stuScores of scoreList) {
-    // 개인의 총점을 저장할 변수.
-    var eachTotal = 0;
-    for (var score of stuScores) { // 개인의 총점을 구하는 반복문.
-        eachTotal += score;
+for (score of scoreList) { // 1회차 [88, 76, 92, 98]
+    var subjectSum = 0;
+    for (var i = 0; i < score.length; i++) {
+        subjectSum += score[i];
     }
-    // 개인 평균
-    var eachAvg = eachTotal / stuScores.length;
-    averageList.push(eachAvg);
+    persenalAvg.push(subjectSum / score.length);
 }
 
-// 각 개인의 수학 점수 총점.
-var eachMathTotal = 0; // 개인의 수학 점수를 저장할 변수.
-for (var Score of )
+console.log(`학생별 평균 점수: ${persenalAvg}`);
 
-// 각 학생의 평균 출력, 학급 평균 구하기
-var stuAvgSum = 0; // 모든 학생의 평균 총합을 저장할 변수.
+// 개인별 평균을 구했으니 학급 평균을 구하자.
+// 먼저 학급 학생들 평균 점수의 총합부터 구하고, 그 총합을 학급 학생들 수로 나누자.
 
-for (let i = 0; i < averageList.length; i++) {
-    stuAvgSum += averageList[i]; // 한 학생의 평균점수를 계속 누적하면 그게 학급 학생의 평균 총합이 됨.
-    console.log(`${i+1}번 학생의 평균: ${averageList[i]}점.`);
+var classSum = 0; // 학급 학생들의 평균들의 총합.
+
+for (score of persenalAvg) {
+    classSum += score;
 }
 
-var classAverage = stuAvgSum / scoreList.length;
-console.log('==============================================');
-console.log(`우리 학급 평균: ${classAverage}점`);
-console.log(`우리 학급 수학점수 평균: ${}점`);
+var classAvg = classSum / persenalAvg.length;
+
+console.log(`학급 평균 점수: ${classAvg}점.`);
