@@ -76,3 +76,15 @@ function sayHello(language='한국어') { // ='한국어' 부분이 아래의 ES
 
 console.log('==============================================');
 sayHello();
+
+
+// 매개변수가 없는 함수
+// 아래 selectRandomPet은 인풋이 없어도 리턴값이 매번 달라질 수 있음.
+function selectRandomPet() {
+    var pets = ['멍멍이', '야옹이', '짹짹이', '어흥이', '두껍이'];
+    // 0 부터 4 까지의 랜덤정수 (why? pets의 length만큼!!)
+    var rn = Math.floor(Math.random() * pets.length);
+    return pets[rn];
+}
+
+console.log(`선택된 동물: ${selectRandomPet()}`);
