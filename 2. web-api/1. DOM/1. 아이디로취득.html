@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+
+</head>
+<body>
+    
+    <ul>
+        <li id="apple">사과</li>
+        <li id="banana">바나나</li>
+        <li id="grape">포도</li>
+        <li id="pineapple">파인애플</li>
+    </ul>
+
+    <script>
+        // 선언안했지만 자바스크립트 내부에 var document = {}; 가 있는거임. 객체타입이니까 
+        // console.log(document.body); // 이러면 body 태그의 객체를 얻을 수 있음.
+
+        // html태그의 객체
+        // console.log(document.documentElement);
+
+        // id속성으로 요소 노드 취득(원하는 태그를 가져오고 싶을 때)
+        const $banana = document.getElementById('banana'); // 함수라서 소괄호 필수.
+        // 태그가 들어있는 변수에 관례적으로 $를 앞에 씀.
+        // id를 여러개 쓰면 제일 처음 걸리는 id에 수정사항이 적용되기 때문에 id는 중복이 없이 주는 것이 좋다.
+        console.log($banana.style);
+
+        $banana.textContent = '뻐네너';
+
+        $banana.style.color = 'red';
+        $banana.style.backgroundColor = 'yellow';
+
+        // id 속성이 부여된 요소는 해당 아이디가 자동으로 전역변수로 등록됨.
+        // let grape = '뽀도도'; 기존에 변수 이름을 사용하던거랑 id 이름이랑 같으면 아래 코드가 적용되지 않음.
+        grape.textContent = '맛있는 포도'; // 이 방법을 추천하지는 않음.
+
+    </script>
+
+</body>
+</html>
