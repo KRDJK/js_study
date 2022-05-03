@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <ul id="fruits">
+        <li>사과</li>
+        <li>딸기</li>
+        <li>자몽</li>
+        <li>라임</li>
+        <li>레몬</li>
+        <li>바나나</li>
+    </ul>
+
+    <script>
+        const $fruits = document.getElementById('fruits');
+        const $mango = $fruits.firstElementChild.cloneNode(); // li태그만 복사
+        $mango.textContent = '망고';
+
+
+        // 노드 교체 (사과 -> 망고) : 텍스트 교체만 하는게 아니라 태그 자체를 바꾸고 싶을 때!!
+        // span 태그로 되어있던걸 사용자가 수정할 수 있는 input으로 변하게 하고 싶을 때!!!
+        $fruits.replaceChild($mango, $fruits.firstElementChild); // 부모에게 부탁해야함 얘도.
+
+
+        // 노드 삭제
+        $fruits.removeChild($fruits.lastElementChild); // 얘도 부모에게 부탁해야함.
+
+        // 노드 전체삭제 함수 정의
+        // $parentNode: 삭제될 자식들의 부모
+        function removeAllChild($parentNode) {
+            
+            while (!!$parentNode.children.length) { // 자식이 있는 동안에 제거해라. 첫째를 계속. 자식이 없어지면 중단. 있는동안은 무한으로 지우는 것을 반복.
+                $parentNode.removeChild($parentNode.firstElementChild);
+            }
+
+            /* for문으로 할 경우에는 이렇게 했으면 됐다! 생각의 전환 (뒤에서부터 삭제)
+            for (let i = $parentNode.children.length; i >= 0; i--) {
+                $parentNode.removeChild($parentNode.children[i]);
+            } 
+            */
+
+            // $parentNode.innerHTML = ''; 이건 애초에 아닌듯 잊자.
+            // for (let i = 0; i < $parentNode.children.length; i++) {
+            //     $parentNode.removeChild($parentNode.children[i]);
+            // } // 오류가 있음. 지 멋대로 처음 지워진거를 제외하고 인덱스 정렬을 새로 하는 바람에 꼬이는 부분이 생김.
+        }
+
+        // removeAllChild($fruits);
+
+    </script>
+
+</body>
+</html>

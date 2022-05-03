@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <ul id="fruits">
+        <li>사과</li>
+        <li>바나나</li>
+        <li>포도</li>
+        <li>망고</li>
+        
+    </ul>
+
+    <script>
+
+        // 배열 디스트럭쳐링(구조분해 할당 ES6+)
+        const foods = ['라면', '오렌지', '치킨'];
+
+        // 배열의 길이와 매치할 변수들의 숫자가 다르면 순서대로 매치하고 안되는 부분은 undefined 또는 존재하지 않게 된다.
+        const [ramen, orange, chicken] = foods; // 아래 3줄과 동일한 코드
+        console.log(chicken);
+
+        /*
+        const ramen = foods[0];
+        const orange = foods[1];
+        const chicken = foods[2];
+        */
+
+
+        const $fruits = document.getElementById('fruits');
+
+        const [$apple, $banana, $grape, $mango] = $fruits.children; // 유사 배열 구조이기 때문에 가능하다.
+        
+
+        // 노드 이동
+        $fruits.insertBefore($banana, $mango);
+
+        // 맨 끝으로 이동. why? 이미 있던 놈이라서 만약 화면에 없던 가상의 놈이었다면 새로 추가가 됨.
+        $fruits.appendChild($grape);
+
+        console.log($fruits.children);
+
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <ul id="fruits">
+        <li class="apple">사과</li>
+        <li class="banana">바나나</li>
+        <li class="grape">포도</li>
+    </ul>
+
+    <div class="box">
+        
+    </div>
+
+    <script>
+            // 객체타입이 됨. 우항이 함수 ==>> 모르겠으면 라이브 서버 키고 개발자도구 뜯어서 봐라.
+        const $fruits = document.getElementById('fruits'); // querySelector('#fruits'); 도 똑같음.
+        console.log($fruits);
+        console.log(($fruits.children));
+
+        // 기존 노드의 모든 자식노드를 탐색, 텍스트노드 제외
+        const $childList = $fruits.children; // 자식은 여러 명일 수 있기 때문에 유사배열에 담아서 리턴한다.
+
+        const $firstChild = $childList[0];
+        // const $firstChild2 = $fruits.firstChild; // childNodes에서 첫번째 자식을 가져왔네..?? text가 왜 나와!!
+        const $firstChild2 = $fruits.firstElementChild;
+        console.log($firstChild);
+        console.log($firstChild2);
+
+        console.log('====================================================');
+
+        const $lastChild = $childList[$childList.length - 1]; // 첫째는 항상 0번 인덱스지만 마지막 인덱스는 변동이 생길 수 있기 때문에 이렇게 작성.
+        const $lastChild2 = $fruits.lastElementChild;
+
+        console.log($lastChild === $lastChild2); // true가 나오네 ㅇㅇ 굿.
+
+        console.log('====================================================');
+
+        const $box = document.querySelector('.box');
+
+        // 박스라는 클래스의 자식이 있는지를 알고 싶을 때!!!!
+        console.log($box.hasChildNodes()); // 자식이 있으니 true라고 나옴. -->> !를 앞에 붙여서 없냐고 물어볼 수도 있다. 공백으로 둬도 true래 ㅡㅡ 쓰지말자.
+        console.log(!!$box.children.length); // 공백을 자식으로 보지 않음. core-js. 5강 논리타입으로 변환 참고!!
+
+    </script>
+
+</body>
+</html>

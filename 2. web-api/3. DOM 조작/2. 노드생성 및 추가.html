@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <ul id="fruits">
+        <li>사과</li>
+    </ul>
+
+    <script>
+
+        // 1. 새로운 요소노드를 생성(허공에 공간에 생성한다는 느낌.)
+        const $newLi = document.createElement('li'); // <li></li> 딱 이렇게만 만들어짐.
+
+        // 2. 생성된 노드에 텍스트를 추가
+        $newLi.textContent = '바나나'; // <li>바나나</li>가 된 것.
+
+        // 3. 새로운 노드를 추가.(만든걸 원하는 위치에 넣어줘야하니까) 어케? 추가할 위치에 부모요소에 넣는다. 야 너의 자식으로 나를 추가해!
+        const $fruits = document.getElementById('fruits');
+        $fruits.appendChild($newLi); //append : 추가하다.
+
+
+
+        // <li>복숭아</li> 를 추가하려면?? 또 쓰냐? 놉!  함수를 활용하자.
+        function appendNewLi(fName) {
+            const $newLi = document.createElement('li');
+
+            $newLi.textContent = fName; 
+
+            const $fruits = document.getElementById('fruits');
+            $fruits.appendChild($newLi);
+        }
+
+        
+        // 아래 fruitArr을 사용자가 원하는 과일로 입력해주는 형태로 바꿔서 그것들을 li로 추가해보자.
+        const fruitArr = ['복숭아', '포도', '딸기', '자몽'];
+
+        for (let txt of fruitArr) {
+            appendNewLi(txt);
+        }
+
+
+
+
+        // <li><a>레몬</a></li> 를 추가해봐라.
+        const $newLi2 = document.createElement('li'); // li태그 생성
+
+        const $newA = document.createElement('a'); // a태그 생성
+
+        $newA.textContent = '레몬'; // 레몬 텍스트 추가
+
+        $newLi2.appendChild($newA); // li의 자식으로 a 집어넣기. 가상 + 가상
+
+        $fruits.appendChild($newLi2); // ul의 자식으로 li 집어넣기  실존 + 가상
+
+
+    </script>
+
+</body>
+</html>

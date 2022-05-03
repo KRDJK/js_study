@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <ul id="fruits">
+        <li>사과</li>
+        <li>바나나</li>
+        <li>포도</li>
+    </ul>
+
+    <script>
+
+        const $fruits = document.getElementById('fruits');
+
+        const $newLi = document.createElement('li'); // 가상 li 생성.
+        $newLi.textContent = '망고'; // 가상 li의 텍스트를 추가.
+
+        // $fruits.insertBefore($newLi, $fruits.children[1]); // 바나나 노드 앞에다가 가상 li를 추가.
+        // $fruits.insertBefore($newLi, $fruits.lastElementChild); // 맨 마지막인 포도 앞에
+        // $fruits.insertBefore($newLi, document.querySelector('#fruits > li:nth-child(2)')); // 사과와 바나나 사이
+        
+
+    </script>
+
+</body>
+</html>

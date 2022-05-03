@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <ul id="fruits">
+        <li>사과</li>
+        <li>사과</li>
+        <li>사과</li>
+        <li>사과</li>
+        <li>사과</li>
+        <li>사과</li>
+        <li>사과</li>
+        <li>사과</li>
+    </ul>
+
+    <script>
+
+        const $fruits = document.getElementById('fruits');
+        console.log($fruits.innerHTML); // 공백을 포함해서 알려줌. 해당 li태그를 포함한 text를 문자로 한번에 퉁쳐서 가져옴(공백까지 포함해서)
+
+        // $fruits.innerHTML = '야!'; // li가 통으로 사라지고 ul에 야가 됨.
+        
+        // ul 내부의 태그가 수정됨.
+        $fruits.innerHTML = '<li class="grape">포도</li>';
+
+        // 자식태그 추가
+        $fruits.innerHTML += '<li class="orange">오렌지</li>'; // 문자열로 취급하기 때문에 이런 방식으로!!!
+
+        // 자식태그 전체 삭제
+        $fruits.innerHTML = '';
+
+    </script>
+
+</body>
+</html>

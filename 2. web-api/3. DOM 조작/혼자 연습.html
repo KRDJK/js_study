@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>과일 추가</title>
+</head>
+<body>
+    
+    <ul id="fruits">
+        <li>사과</li>
+    </ul>
+
+    <script>
+
+        function appendNewLi(fName) {
+            const $newLi = document.createElement('li');
+
+            $newLi.textContent = fName; 
+
+            const $fruits = document.getElementById('fruits');
+            $fruits.appendChild($newLi);
+        }
+
+        
+        // 아래 fruitArr을 사용자가 원하는 과일로 입력해주는 형태로 바꿔서 그것들을 li로 추가해보자.
+        const fruitArr = ['복숭아', '포도', '딸기', '자몽'];
+
+        for (let txt of fruitArr) {
+            appendNewLi(txt);
+        }
+
+    </script>
+
+
+</body>
+</html>
