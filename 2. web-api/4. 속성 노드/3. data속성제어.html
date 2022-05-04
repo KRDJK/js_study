@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <ul class="users"> <!--케밥케이스로 만들어야함 '-' 써가면서 !! js안에서나 카멜케이스!! -->
+        <li data-user-number="4321" data-role="common">김철수</li>
+        <li data-user-number="9999" data-role="admin">박영희</li>
+    </ul>
+
+    <script>
+        
+        const $users = document.querySelector('.users');
+        const [$li1, $li2] = [...$users.children]; // 디스트럭쳐 이거 다시 보자.
+
+        console.log($users);
+        console.log($li1.dataset); // 앞에 'data-'가 사라지고 케밥케이스에서 카멜 케이스로 바뀜.
+        console.log($li1.dataset.role);
+        console.log($li2.dataset.userNumber);
+
+        $li2.dataset.role = 'common';
+
+
+        // 김철수 li 태그에 data-user-address 속성 추가. how?? 아예 없는 속성을 동적 추가.
+        $li1.dataset.userAddress = '서울시 중구'; // 이러면 html body 태그에는 케밥 케이스로 추가된다. 신기한데??
+
+
+        // data-user-address 삭제
+        delete $li1.dataset.userAddress;
+
+    </script>
+
+</body>
+</html>

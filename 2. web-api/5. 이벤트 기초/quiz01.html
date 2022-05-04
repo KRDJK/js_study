@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>quiz01</title>
+
+    <style>
+        .hide {
+            display: none;
+        }
+
+    </style>
+
+</head>
+<body>
+    
+    <button id="hider">텍스트 숨기기!!</button>
+
+    <div class="text">안녕하세요~~</div>
+
+    <script>
+        const $btn = document.getElementById('hider');
+        console.log($btn);
+        
+        $btn.onclick = 
+
+        // $btn.addEventListener('click', function(){
+        //     $btn.textContent = '텍스트 보이기!!'; // 이렇게 하는게 아닌가봐..
+        // });
+
+        $btn.addEventListener('click', function(){
+            $btn.nextElementSibling.classList.toggle('hide');
+        });
+
+
+    </script>
+
+
+
+</body>
+</html>

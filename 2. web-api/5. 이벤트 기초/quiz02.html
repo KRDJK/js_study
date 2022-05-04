@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>quiz02</title>
+    <style>
+        .menu ul {
+            margin: 0;
+            list-style: none;
+            padding-left: 20px;
+            display: none;
+        }
+        /* ul 태그에 class 추가해서 해보자 */
+        .menu .hidden {
+            display: block;
+        }
+
+        .menu .title {
+            font-size: 18px;
+            cursor: pointer;
+        }
+        .menu .title::before {
+            content: '▶ ';
+            font-size: 80%;
+            color: green;
+        }
+        .menu.open .title::before {
+            content: '▼ ';
+        }
+        .menu.open ul {  /* 여기 있었네 */
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- #lunches.menu>span.title+ul>li*4 -->
+    <div id="lunches" class="menu">
+        <span class="title">추천 메뉴(Click Me!)</span>
+        <ul>
+            <li>돈까스</li>
+            <li>군만두</li>
+            <li>볶음밥</li>
+            <li>마파두부</li>
+        </ul>
+    </div>
+
+    <script>
+        const $title = document.querySelector('.title');
+        // $title.onclick = function() {
+        //     $title.parentElement.classList.toggle('open');
+        //     $title.nextElementSibling.classList.toggle('hidden');
+        // }
+
+        // $title.addEventListener('click', function() {
+        //     $title.nextElementSibling.classList.toggle('hidden');
+        // }); 
+        // css 분석을 했으면 hidden 클래스 부여는 안했어도 될 작업!!
+
+        $title.addEventListener('click', function() {
+            $title.parentElement.classList.toggle('open');
+        });
+        
+    </script>
+   
+</body>
+</html>

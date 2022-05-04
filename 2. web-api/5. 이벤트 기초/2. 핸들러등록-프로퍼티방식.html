@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <button id="b1">클릭1</button>
+    <button id="b2">클릭2</button>
+    <button id="b3">클릭3</button>
+
+
+    <script>
+        /*
+        const $buttonGroup = document.querySelectorAll('button');
+        $buttonGroup = [...$buttonGroup];
+        const $b1 = $buttonGroup[0];
+        const $b2 = $buttonGroup[1];
+        const $b3 = $buttonGroup[2];
+        */
+
+        // 안배운적은 없지만 생소한 코드!!   위에 /**/ 속 코드를 한줄로 적은 것.
+        const [$b1, $b2, $b3] = [...document.querySelectorAll('button')];
+        
+        // $b1.onclick = null; // 이게 기본 상태인거임.
+            // onclick:null 프로퍼티가 자동으로 들어가있음.
+
+        const sayHello = function() {
+            alert('안녕하세요~~~');
+        };
+
+        $b1.onclick = sayHello;
+        $b2.onclick = sayHello;
+
+        $b3.onmouseenter = () => {
+            $b3.style.background = 'red';
+        };
+        $b3.onmouseleave = () => {
+            $b3.style.background = 'yellow';
+        };
+
+
+        // 프로퍼티방식은 동일한 타입의 이벤트에서
+        // 다른 핸들러를 등록할 경우, 기존의 핸들러가 사라지는 단점이 있음.
+        $b3.onmouseleave = () => {
+            alert('안녕~~~ 잘가요!!');
+        };
+
+
+        // 이벤트 핸들러 제거
+        $b3.onmouseleave = null; // 원래의 초기 상태로 다시 가면 된다.
+
+
+
+        const kim = {
+            stuNum : 11,
+            name : '김철수',
+            grade : 3,
+            hobby : ['축구', '영화'],
+            major : null,
+            study : function() {
+                console.log('열심히 공부합니다.');
+            },
+        };
+
+        console.log(kim.grade);
+        // console.log(kim.study()); // 이러면 return이 없어서 undefined라고 나오네??
+        kim.study(); // 리턴값이 없어서 단독 실행 하여야함.
+
+        kim.grade = 4;
+
+        // 함수 바꿀 때도 똑같음. 함수 자체를 바꿔 대입해주면 됨.
+        kim.study = function() {
+            console.log('열심히 공부할까??');
+        }
+
+        kim.study();
+
+    </script>
+
+</body>
+</html>

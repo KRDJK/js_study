@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <input type="text" id="user-name" value="홍길동">
+
+    <script>
+
+        const $input = document.querySelector('input');
+
+        //홍길동 참조
+        // const userName = $input.attributes.value.value;
+        const userName = $input.getAttribute('value'); // 위에랑 같음.
+        console.log(userName);
+
+        // id값 참조
+        const inputId = $input.getAttribute('id'); // inputId의 속성은 문자. why? 문자열('')안에 가둬서 리턴하니까!
+        console.log(inputId);
+
+
+        // 속성값 변경
+        // value속성의 값을 홍길동 -> 박영희로 바꾸고 싶다
+        // $input.attributes.value.value = '박영희';
+
+        $input.setAttribute('value', '박영희');
+
+        // id속성값을 user-name -> member-name으로 바꾸고 싶을 땐??
+        $input.setAttribute('id', 'member-name');
+
+
+        // 속성값 추가(없던거를 만들어서 추가)
+        $input.setAttribute('title', '이름입니다.');
+        $input.setAttribute('placeholder', '이름은 한글로 쓰세요');
+
+
+        // 속성값 제거
+        // $input.attributes.value.value = ''; // 빈 문자열 처리하면 지워짐.
+
+        $input.removeAttribute('value');
+
+
+        // 뜬금! input 태그 자체를 없애고 싶을 땐???
+        // document.body.removeChild($input);
+
+
+        // 속성 존재 유무 확인
+        const logical = $input.hasAttribute('type'); // type 속성이 있냐??
+        console.log(logical); // 있다, 없다 논리형태로 나옴. 논리형태로 나오면?? if,반복문에서의 조건식으로 사용도 가능하다.
+
+    </script>
+
+</body>
+</html>
