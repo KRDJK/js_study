@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+        .msg {
+            margin-top: 20px;
+            padding: 5px;
+            width: 150px;
+            border-bottom: 1px solid #333;
+        }
+
+    </style>
+
+</head>
+<body>
+    
+    <input type="text" id="text-input">
+    <p class="msg"></p>
+
+    <script>
+        const $txtInput = document.getElementById('text-input');
+
+        $txtInput.addEventListener('keyup', function(event){ // 보통 e라고 많이 쓴다.
+            // console.log('키보드 이벤트 발생!'); // 이러니까 지울 때도, 뭔가 하나만 키보드로 하기만 해도 반영이 된다. esc, shift 등등 어떤 것이든 키보드 입력은 다 잡아냄.
+            // console.log(event); // 이랬더니 뭐 하나 입력할 때마다 객체에 code: key(입력한 키)가 나오네?? code보다 key부분을 주목해라.
+           
+            const $msg = document.querySelector('.msg');
+
+            if (event.key === 'Enter') {
+                // console.log('엔터 눌렀네?');
+                // $msg.textContent += `${$txtInput.value}\t`;
+                $msg.textContent = $txtInput.value;
+                $txtInput.value = '';
+            }
+        });
+
+
+    </script>
+
+</body>
+</html>

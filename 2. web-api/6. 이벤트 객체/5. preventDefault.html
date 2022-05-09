@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .link2 {
+            text-decoration: underline;
+            color: blue;
+            cursor: pointer;
+        }
+
+    </style>
+
+</head>
+<body>
+    
+    <a href="https://www.naver.com" class="link">네이버 링크</a>
+
+    <!-- 아래 스크립트 항목에서 했듯 a태그처럼 만들어줄 수는 있으나 이러면 구조적으로 문제가 됨. -->
+    <!-- <div class="link2">구글 링크</div> -->
+
+
+    <!-- form은 서버로 보내는 제출 양식 -->
+    <form action="/hello">
+        <input type="text" name="ttt">
+        <button id="check" type="submit">확인</button>
+        <!-- submit으로 하면 서버에 보내는 것! 그냥 button으로 두면 공버튼 -->
+    </form>
+
+
+
+    <script>
+        /*
+        const $link2 = document.querySelector('.link2');
+
+        $link2.onclick = e => {
+            location.href = 'https://www.google.com';
+        };
+        */
+
+        /*
+        confirm(message) :
+        알림창을 띄워서 message를 보여준 후 확인 / 취소 선택지를 주고
+        확인을 누르면 true를 리턴, 취소를 누르면 false 리턴.
+        */
+
+        // const answer = confirm('안녕하십니까?'); // alert은 확인밖에 없는데 confirm은 확인과 취소를 같이 물어봄.
+        // console.log(answer);
+
+        const $link = document.querySelector('.link');
+
+        $link.onclick = e => {
+            if (!confirm('네이버로 이동합니까??')) { // !는 not으로 해석해라.
+
+                // 취소(false값이 나올 때)을 눌렀을 때 실행할 코드.
+
+                e.preventDefault(); // a태그의 기본 기능을 막음.
+
+            } else {} // 이동하게 두면 되니까 뭐 따로 해줄 필요가 없음.
+        };
+
+
+
+        // submit 버튼 이벤트 (필수 점검 사항을 점검한 후, 다 ok면 서버로 전송하자.)
+        const $subBtn = document.getElementById('check');
+        $subBtn.onclick = e => {
+            // 확인 버튼을 눌렀을 때 입력값을 먼저 검증하겠다.
+            e.preventDefault(); // 일단 막자. 확인부터 해야하니까.
+
+            // 검증
+            
+            const $input = $subBtn.previousElementSibling;
+            if ($input.value === '') {
+                alert('필수입력사항입니다~~');
+                return; // while, for의 break 같은 탈출문.
+            }
+
+            // 서버로 데이터 전송
+            const $form = $subBtn.parentElement;
+            $form.submit();
+        };
+    </script>
+
+</body>
+</html>

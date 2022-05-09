@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #fruits {
+            width: 250px;
+            padding: 50px;
+            border: 2px solid red;
+
+        }
+
+        #fruits li {
+            background: greenyellow;
+            margin-bottom: 10px;
+        }
+
+        #fruits li:first-child {
+            position: absolute;
+            bottom: 10%;
+            right: 5%;
+        }
+
+    </style>
+
+</head>
+<body>
+    
+    <ul id="fruits">
+        <li class="apple">Apple</li>
+        <li class="banana">Banana</li>
+        <li class="grape">Grape</li>
+    </ul>
+
+    <script>
+        const $fruits = document.getElementById('fruits');
+
+        $fruits.onclick = e => {
+            console.log('ul태그에서 클릭이벤트 발생!');
+            console.log(e); // 여기서 currentTarget을 보려면 null이라고 나옴.. 왜지..? 브라우저 업데이트되면서 뭔가 잘못된 것으로 추정.. 흠..
+            console.log('실제로 이벤트가 발생된 요소', e.target);
+            console.log('이벤트 핸들러가 바인딩된 요소', e.currentTarget); // 이벤트 자체를 ul에게 걸었기 때문에 여기서의 currentTarget은 영원히 ul태그이다.
+            // currentTarget이 이렇게 로그를 찍으면 나옴.
+        };
+
+        $fruits.firstElementChild.onclick = e => { // 여기선 li.apple이 currentTarget이다. 이벤트를 걸어줬으니까!
+            console.log('li.apple에서 클릭 이벤트 발생!');
+        };
+
+    </script>
+
+</body>
+</html>

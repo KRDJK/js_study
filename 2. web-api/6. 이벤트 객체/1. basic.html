@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <p>아무 곳이나 클릭하세요!</p>
+    <em class="msg"></em>
+
+    <script>
+
+        document.addEventListener('click', function(hello){ // 이랬더니 객체가 들어오네?? 이걸 이벤트 객체가 들어왔다고 표현.
+                                                            // target은 이벤트가 일어난 위치. type은 클릭이벤트
+            console.log('클릭이벤트 발생!');                 // x, y는 이벤트 발생위치 좌표(픽셀로 나옴). curruntTarget은 일단 null이라고 나옴.
+            console.log(hello.x);
+            console.log(hello.y);
+
+            const $msg = document.querySelector('.msg');
+            $msg.textContent = `x: ${hello.x}, y: ${hello.y}`;
+        });
+
+    </script>
+
+</body>
+</html>

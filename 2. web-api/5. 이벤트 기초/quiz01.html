@@ -32,10 +32,12 @@
 
         $btn.addEventListener('click', function(){
             // $btn.nextElementSibling.classList.toggle('hide'); // toggle을 쓰면서는 안되나..?
-            if ($btn.nextElementSibling.contains('hide')) {
-                $btn.textContent = '텍스트 보이기!!';
-            } else {
+            if ($btn.nextElementSibling.classList.contains('hide')) {
+                $btn.nextElementSibling.classList.remove('hide');
                 $btn.textContent = '텍스트 숨기기!!';
+            } else {
+                $btn.nextElementSibling.classList.add('hide');
+                $btn.textContent = '텍스트 보이기!!';
             }
         });
 

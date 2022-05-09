@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #fruits {
+            display: flex;
+            list-style: none;
+            padding: 20px;
+            border: 2px solid red;
+        }
+
+        #fruits li {
+            width: 100px;
+            background: orange;
+            margin-right: 10px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .active {
+            color: red;
+            text-decoration: underline;
+        }
+
+        label {
+            display: block;
+            margin-top: 20px;
+        }
+
+    </style>
+
+</head>
+<body>
+    
+    <ul id="fruits">
+        <li data-number="1" id="apple" class="active">Apple</li>
+        <li data-number="2" id="banana">Banana</li>
+        <li data-number="3" id="grape">Grape</li>
+    </ul>
+
+    <p>선택된 과일: <em class="msg">Apple</em></p>
+
+
+    <form action="#">
+        <label>
+            # 새로운 과일 추가하기:
+            <input type="text" class="text-box">
+            <button id="add">추가</button>
+        </label>
+    </form>
+
+
+    <script>
+
+        const $fruits = document.getElementById('fruits');
+
+        const $btn = document.getElementById('add');
+
+        $btn.onclick = e => {
+            const $txtInput = $btn.previousElementSibling;
+            const $newLi = document.createElement('li');
+            // input은 닫는 태그가 없는 단일 태그라서 textContent가 없다. value 속성에 입력받은 값이 들어간다.
+            // textContent란? 
+            // <li>ddd</li> ==>> ddd 부분이 textContent다.
+            $newLi.setAttribute('id', $txtInput.value.toLowerCase());
+            $newLi.textContent = $txtInput.value; 
+            $fruits.appendChild($newLi);
+            
+            // 아래와 같이 for문으로 해도 되긴 하나, 4.속성 노드 폴더에서 3. data속성제어 파일 다시 보기.
+            /*
+                const curLastNumber = $fruits.lastElementChild.dataset.number;
+                console.log(curLastNumber);  //확인용
+                
+                없던거를 추가해줄 때 수정하듯이 할 수 있음.
+                $newLi.dataset.number = +curLastNumber + 1;
+            */
+            for (let i = 0; i < $fruits.children.length; i++) {
+                if (!$fruits.children[i].hasAttribute('data-number')) {
+                    $fruits.children[i].setAttribute('data-number', i+1);
+                }
+            } // 이러면 여기서는 문제가 없지만 만약에 앞에 숫자들이 순차적으로 있지 않았다면? 
+              // 기존에 있는 3개의 ul태그가 1, 2, 3이 아닌 21, 22, 23이었다면?? 이 for문을 쓸 수가 없다..
+
+            $txtInput.value = '';
+        }
+        // 문제는 맞게 했는데 심화로다가 txtInput.value값을 첫글자는 대문자로 바꿔주려면??
+
+
+
+        // 이벤트 핸들러 함수 정의
+        function activate(e) {
+
+            // ul을 클릭하면 이하의 코드를 작동시키면 안됨.
+            // $elementNode.matches('css selector')
+            //   : 해당 선택자에 맞는 요소면 true, 아니면 false
+            if (!e.target.matches('#fruits > li')) { 
+                // e.target이 ul의 자식인 li와 매치했을 때 매칭이 되면! 나가라. 
+                // 근데 매치됐을 때가 아니라 매치되지 않았을 때 나가려면 앞에 ! 를 붙여서 논리반전을 준다.
+                return; // 나가라!
+            }
+
+
+            // 1. 클릭 대상을 제외한 li 태그에 있는 class=active를 제거.
+                // 1-1. ul의 모든 자식 가져오기
+                const $liList = [...$fruits.children];
+                // console.log($liList);
+
+                // 1-2. 모든 li를 순회하여 class=active 탐색 
+                /*
+                    ==>> 굳이 순회할 필요없이 애초에 싹다 이 active라는 클래스를 싹 지우라고 해놓고 
+                    입력했으면 안되나?? 그럼 에러가 날 수 있다. 없는데 지우라고 하는 경우가 생기니까!!
+                    있는지 확인하고 있으면 지우라고 하는게 프로그래밍적으로 더 맞다.
+                */
+                for (let $li of $liList) {
+                    if ($li.classList.contains('active')) {
+                        $li.classList.remove('active');
+                        break;
+                    }
+                }
+
+            // 2. 클릭 대상에 class=active를 부여
+                // 2-1. 클릭한 대상은 어케 찾아?? e.target에 들어가 있다.
+                e.target.classList.add('active');
+
+
+            // 3. 클릭한 li태그의 텍스트를 복사하여 em 태그에 텍스트로 수정.
+                const $em = document.querySelector('.msg');    
+                $em.textContent = e.target.textContent;
+
+        }
+
+        // activate(); // 테스트용으로 호출 해보자.
+
+        // $fruits.firstElementChild.onclick = activate;
+
+        // const [$a, $b, $g] = [...$fruits.children];
+        // $a.onclick = activate;
+        // $b.onclick = activate;
+        // $g.onclick = activate;
+
+
+        /*
+            모든 요소에 이벤트 핸들러를 일일이 바인딩하면 (아래 for문과 같이)
+            새로운 요소가 실시간으로 추가되었을 때, 
+            또다시 반복문을 처음부터 돌면서 핸들러를 붙여줘야하는 문제가 생김.
+            이러면 프로그래밍 최적화 측면에서 좋지 않음.. 불필요한 연산 과정이 생기니까..
+            이렇게 한다고 문제는 되지 않긴 함. ㅇㅇ 
+
+
+            - 자식 요소들의 이벤트 핸들러가 동일한 내용이라면 차라리 부모요소에 1번만
+            핸들러를 바인딩하여 자식요소들에게 전파해서 사용하면 성능최적화에 도움이 됨.
+        */
+
+
+        // 이벤트 핸들러(activate) 바인딩
+        // for (let $li of [...$fruits.children]) {
+        //     $li.onclick = activate;
+        // }
+
+        
+
+        // **** 부모요소에 이벤트를 부여한 후, 버블링을 이용하자. ***** //
+        $fruits.onclick = activate; // 이러면 자동으로 자식태그로 뭐가 들어가도 자연스럽게 이벤트가 전파됨.
+            // 근데 이랬더니 li를 정확히 클릭하면 문제가 없는데 ul 영역을 클릭하면 뭔가 이상하다..! 모두에게 class=active가 부여됨.
+            // 이 이유는 e.target을 했을 때, ul을 클릭하면 ul이니까..
+            // 당연히 이 현상은 버그성이라고 볼 수 있다. 원치 않던 상황!
+            // 그래서 막으려면?? 함수 정의 첫부분에서 
+            // e.target이 ul의 자식인 li와 매치되지 않으면 나가고 아래 코드들을 실행하지 말라고 탈출문을 만들어준다.
+
+    </script>
+
+</body>
+</html>
