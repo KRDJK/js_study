@@ -14,17 +14,26 @@
 
 const $mainInput = document.getElementById('todo-text');
 const $addBtn = document.getElementById('add');
-
+const $todoList = document.querySelector('.todo-list');
 
 
 
 // ============================================== 메인 함수 실행부 =========================================================
 
-
+// 최상단 input부분 버튼 클릭 이벤트 만들기
 $addBtn.addEventListener('click', function(e){
     if ($mainInput.value === '') {
         $mainInput.setAttribute('placeholder', '필수 입력값입니다.');
         $mainInput.parentElement.style.backgroundColor = 'red';
+    } else {
+        // 빈 문자열이 아니면 가상 태그를 만들어서 넣어줘야지
+        const $newLI = document.createElement('li');
+        $newLI.classList.add('checkbox');
+        $newLI.setAttribute('data-id', $todoList.children(indexof()));
+        
+        const $newLabel = document.createElement('label');
     }
     console.log(e);
 });
+
+// 할일 목록 버튼 클릭 이벤트 만들기
