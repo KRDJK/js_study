@@ -28,12 +28,17 @@ $addBtn.addEventListener('click', function(e){
     } else {
         // 빈 문자열이 아니면 가상 태그를 만들어서 넣어줘야지
         const $newLI = document.createElement('li');
-        $newLI.classList.add('checkbox');
-        $newLI.setAttribute('data-id', $todoList.children(indexof()));
-        
-        const $newLabel = document.createElement('label');
+        $newLI.classList.add('todo-list-item');
+        // setAtt가 아닌듯
+        // $newLI.setAttribute('data-id', +$todoList.lastElementChild.dataset.id +1);
+        // innerHTML로 하지 말아야하나?
+        $newLI.innerHTML = '<label class="checkbox"><input type="checkbox"><span class="text"></span></label>';
+        const $spanText = $newLI.firstElementChild.lastElementChild.textContent;
+        $spanText = $mainInput.value;
+        // 확인용으로 한번 $newLi를 ul에 넣고 확인해보자.
+        $todoList.appendChild($newLI);
     }
-    console.log(e);
+    console.log($todoList);
 });
 
 // 할일 목록 버튼 클릭 이벤트 만들기
