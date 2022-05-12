@@ -238,29 +238,41 @@ let $comCount = 0;
 // 게임 시작 전 사용자의 위치
 let $userCount = 0;
 
-// 무인도에서 몇번 주사위를 굴렸는지 카운트할 변수.
-let $islandComCount = 0;
-let $islandUserCount = 0;
 
 let isFinish = false; //게임종료 여부
 
-// 주사위를 던진 위치가 무인도인지 확인할 함수.
-function isIsland() {
-    for(let i=0; i < arr.length; i++) {
-        if (arr[i].classList.contains('island')) {
-            if (i === $comCount) {
-                $h1.textContent = `컴퓨터는 현재 무인도에 있습니다. 앞으로 ${3-$islandComCount}번 동안 주사위를 굴려도 움직일 수 없습니다.`;
-                $islandComCount++;
-                return; // 나가라
-            } else if (i === $userCount) {
-                $h1.textContent = `사용자는 현재 무인도에 있습니다. 앞으로 ${3-$islandUserCount}번 동안 주사위를 굴려도 움직일 수 없습니다.`;
-                $islandUserCount++;
-                return;
-            }
-        }
-    }
-}
 
+// 무인도에서 몇번 주사위를 굴렸는지 카운트할 변수.
+let $islandUserCount = 0;
+let $islandComCount = 0;
+
+// // 사용자가 무인도인지 확인할 함수.
+// function isIslandUser() {
+//     for(let i=1; i < arr.length; i++) {
+//         if ($islandUserCount >=3) {
+//             $islandUserCount = 0;
+//             break;
+//         }
+//         else if (arr[i].classList.contains('island') && i === $userCount) {
+//             $h1.textContent = `사용자는 현재 무인도에 있습니다. 앞으로 ${3-$islandUserCount}번 동안 주사위를 굴려도 움직일 수 없습니다.`;
+//             $islandUserCount++;
+//         }
+//     }
+// }
+
+// // 컴퓨터가 무인도인지 확인할 함수.
+// function isIslandCom() {
+//     for(let i=1; i < arr.length; i++) {
+//         if ($islandComCount >= 3) {
+//             $islandComCount = 0;
+//             break;
+//         } else if (arr[i].classList.contains('island') && i === $comCount) {
+//             $h1.textContent = `컴퓨터는 현재 무인도에 있습니다. 앞으로 ${3-$islandComCount}번 동안 주사위를 굴려도 움직일 수 없습니다.`;
+//             $islandComCount++;
+//             break;
+//         }
+//     }        
+// }
 
 
 // ========================= 실행부 =====================//
@@ -290,10 +302,8 @@ $btn.addEventListener('click', e => {
     }
 
     throwDice(); // 주사위 던지는 애니메이션 함수.
-
-    isIsland(); // 주사위를 던진 위치가 무인도인지 확인할 함수.
-    
-
+  
+    // 주사위 값 랜덤 부여
     const $comNum = Math.floor(Math.random() * 5) + 1;
     const $userNum = Math.floor(Math.random() * 5) + 1;
     
@@ -301,27 +311,45 @@ $btn.addEventListener('click', e => {
     // console.log(typeof $userNum);// 숫자 
     // 숫자 
 
+    // 주사위 값이 누가 큰지를 비교하고 큰 숫자에 해당하는 플레이어에게 동작.
         if ($userNum > $comNum) {
+            
+            if ($userCount === 18 && $islandUserCount <= 2) {
+                $h1.textContent = `사용자는 현재 무인도에 있습니다. 앞으로 ${2-$islandUserCount}번 동안 주사위를 굴려도 움직일 수 없습니다.`;
+                $islandUserCount++;
+                return;
+            }
+        
             removeUser(); // 이전 사용자 이모티콘 지우는 함수.
-
+        
             $userCount += $userNum;
-
+                        
             if ($userCount < arr.length){
                 $h1.textContent = (`사용자 : ${$userNum} 컴퓨터 : ${$comNum} 로 사용자가 이겼습니다.\n 사용자가 앞으로가겠습니다.` );
             }
+            
+            movingUser(); // 사용자 아이콘을 이동시킬 함수.
+                
 
-            movingUser();
         } else if ($userNum < $comNum) {
+            
+            if ($comCount === 18 && $islandComCount <= 2) {
+                $h1.textContent = `컴퓨터는 현재 무인도에 있습니다. 앞으로 ${2-$islandComCount}번 동안 주사위를 굴려도 움직일 수 없습니다.`;
+                $islandComCount++;
+                return;
+            }
+
             removeCom(); // 이전 컴퓨터 이모티콘 지우는 함수.
-
+    
             $comCount += $comNum;
-
+    
             if ($comCount < arr.length){
                 $h1.textContent = (`사용자 : ${$userNum} 컴퓨터 : ${$comNum} 로 컴퓨터가 이겼습니다.\n 컴퓨터가 앞으로가겠습니다.`);
             }
-
-            movingCom();
-        } else {
+    
+            movingCom(); // 컴퓨터 아이콘을 이동시킬 함수.
+        }    
+        else {
             $h1.textContent = ('같은 숫자가 나왔습니다. 다시눌러주세요.');
             return;
         }

@@ -45,10 +45,6 @@ input, button {
     border: 1px solid tomato;
 }
 
-#map tr td.island {
-    background-image: url('../img/island.jpg');
-}
-
 #map tr.hang10 td.island {
     background-image: url('../img/island.jpg');
 }
