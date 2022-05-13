@@ -1,3 +1,4 @@
+
 /* reset */
 a {
     color: inherit;
@@ -11,11 +12,19 @@ input, button {
 
 
 /* custom */
-.wrapper {
-    font-size: 20px;
-    font-weight: 700;
-    text-align: center;
+body {
+    /* aside를 wrapper에 속하지 않게 만들면서 
+    aside에도 한번에 글자 속성이 위임되게 하기 위해서!!*/
 
+    /* 글자 크기 좀 줄였어요!! */
+    font-size: 18px;
+    font-weight: 600;
+    font-family: 'Jua', sans-serif;
+    text-align: center;
+}
+
+.wrapper {
+    background: #fff;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -27,6 +36,7 @@ input, button {
     border-collapse: collapse;
     width: 100%;
     border: 5px solid tomato;
+    box-sizing: content-box;
 }
 
 #map tr:nth-child(odd) td:nth-child(odd) {
@@ -40,13 +50,48 @@ input, button {
 }
 
 #map td {
-    width: 100px;
-    height: 100px;
+    /* 첫 브라우저 화면이 100%인데  80px을 넘어가면 부루마블 판이 화면을 넘어가서 줄임. */
+    width: 80px;
+    height: 80px;
     border: 1px solid tomato;
+
+    /* padding-top: 20px; */
+    /* box-sizing: border-box; */
+}
+
+
+#map tr.hang1 td.back {
+    background: no-repeat url(https://item.kakaocdn.net/do/2c8bd4eee7ab65a6dad93403311edf90616b58f7bf017e58d417ccb3283deeb3) center bottom / 60px;
+}
+#map tr.hang1 td.go {
+    background: no-repeat url(https://item.kakaocdn.net/do/d656a50c45c900cf6c99c3831c098df58f324a0b9c48f77dbce3a43bd11ce785) center bottom / 55px tomato;
+}
+#map tr.hang4 td.go {
+    background: no-repeat url(https://item.kakaocdn.net/do/5c7668788e937dacb19c9648cb49b3219f17e489affba0627eb1eb39695f93dd) center bottom / 55px tomato;
+}
+#map tr.hang4 td.back {
+    background: no-repeat url(https://item.kakaocdn.net/do/8aac9980723dfded79809992a4d1efaea88f7b2cbb72be0bdfff91ad65b168ab) center bottom / 60px;
+}
+#map tr.hang7 td.go {
+    /* color: #fff; */
+    background: no-repeat url(https://item.kakaocdn.net/do/5c7668788e937dacb19c9648cb49b32126397d82c8691bdabf557d1536959d9c) center bottom / 60px
+}
+#map tr.hang7 td.back {
+    /* color: #fff; */
+    background: no-repeat url(https://item.kakaocdn.net/do/d84248170c2c52303db27306a00fb861ac8e738cb631e72fdb9a96b36413984e) center bottom / 55px tomato;
+}
+#map tr.hang10 td.back {
+    background: no-repeat url(https://item.kakaocdn.net/do/2c8bd4eee7ab65a6dad93403311edf90a88f7b2cbb72be0bdfff91ad65b168ab) center bottom / 60px tomato;
+}
+#map tr.hang10 td.go {
+    background: no-repeat url(https://item.kakaocdn.net/do/9ac8ba2dd82efb5cad54d5c7451167a182f3bd8c9735553d03f6f982e10ebe70) center bottom / 60px;
+}
+#map tr.hang10 td:nth-child(6) {    
+    background: no-repeat url(https://item.kakaocdn.net/do/8aac9980723dfded79809992a4d1efaef604e7b0e6900f9ac53a43965300eb9a) center bottom / 60px tomato;
 }
 
 #map tr.hang10 td.island {
-    background-image: url('../img/island.jpg');
+    background-image: url(img/island.jpg);
 }
 
 #map span.lnr {
@@ -67,15 +112,20 @@ input, button {
 
 #map #main-box .main-wrap {
     /* background: #000; */
-    height: 100%;
+    height: 100%; 
 }
 
 #map #main-box .main-wrap .main-title {
-    background: yellow;
+    height: 200px;
+    /* background: yellow; */
     text-align: center;
     margin-bottom: 100px;
-    padding: 60px 0;
-    font-size: 30px;
+    /* padding: 60px 0; */
+
+    /* 원래 글자크기 30px에 줄높이 1.5였는데
+    텍스트가 많아지면 박스 크기 변동이 심해져서 줄여봤어요!! */
+    font-size: 20px;
+    line-height: 2;
 }
 
 /* #dice는 숨어있다가 dice-button이 눌리면 나와야함. */
@@ -115,7 +165,12 @@ input, button {
 
 }
 
-#map #main-box .main-wrap #dice-button {
+/* #map 끝 */
+
+
+/* #dice-button 꾸미기 */
+
+#dice-button {
     background: violet;
     width: 150px;
     height: 150px;
@@ -124,13 +179,12 @@ input, button {
     margin: 0 auto;
     border-radius: 50%;
     cursor: pointer;
+
+    position: absolute;
+    left: 80%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
-/* #map 끝 */
 
-
-/* #finish 꾸미기 */
-
-
-
-/* #finish 끝 */
+/* aside#dice-button 끝 */
