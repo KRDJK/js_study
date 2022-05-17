@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        /* The side navigation menu */
+        .sidenav {
+            height: 100vh;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+
+            /* 이걸 하지 않으면 박스의 가로를 0으로 한거지 텍스트 가로를 0으로 한게 아니기 때문에 텍스트만 덩그러니 보임.*/
+            overflow-x: hidden;
+            padding-top: 60px;
+            transition: 0.5s;
+        }
+
+        .sidenav a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidenav a:hover {
+            color: #f1f1f1;
+        }
+
+        .sidenav #closeBtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+        #main {
+            transition: 0.5s;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="mySidenav" class="sidenav">
+        <!-- javascript:void(0)를 쓰면 a태그의 링크 기능을 막는 효과가 있다. -->
+        <a href="javascript:void(0)" id="closeBtn">&times;</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Clients</a>
+        <a href="#">Contact</a>
+    </div>
+
+
+
+
+    <div id="main">
+        <h2>Sidenav Push Example</h2>
+        <p>Click on the element below to open the side navigation menu, and push this content to the right.</p>
+        <span id="openBtn">&#9776; open</span>
+    </div>
+
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+
+        function closeNav(e) {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+
+        // 이벤트 핸들러 바인딩
+        document.getElementById('openBtn').onclick = openNav;
+        document.getElementById('closeBtn').onclick = closeNav;
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- RESET CSS -->
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css"> -->
+<!-- jQuery cdn -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<title></title>
+</head>
+<body>
+
+    <h2>안녕하세요</h2>
+
+    <p class="content">오늘은 제이쿼리를 학습합니다.</p>
+
+    <button id="hide">숨기기</button>
+
+    <script>
+        
+        // 제이쿼리의 시작
+        
+        // $(document).ready(function() {});
+        $(() => {
+            // 버튼 요소노드 가져오기
+            // 바닐라 방식 당연히 됨.
+            // const $btn = document.getElementById('hide');
+
+            const $btn = $('#hide'); // querrySellectorAll의 기능이 같이 담겨있다. 그래서 배열 형태로 잡힘.
+            console.log($btn);
+
+            // 이벤트 등록 (click, dblclick, change, ..)
+            $btn.click(e => {
+                // $('.content').css('display', 'none');
+                $('.content').hide(); // .show 보이고자 할 때는 .show
+            });
+
+        });
+
+    </script>
+
+</body>
+</html>
