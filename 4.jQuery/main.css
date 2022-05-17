@@ -1,0 +1,95 @@
+/* reset */
+a {
+    color: inherit;
+    font-size: inherit;
+    text-decoration: none;
+    /* cursor: none; */
+}
+
+input, button {
+    background: none;
+    outline: none;
+    border: none;
+}
+
+/* custom */
+
+.wrapper {
+    /* background: #eee; */
+    width: 80%;
+    height: 100vh;
+    margin: 0 auto;
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+}
+
+.wrapper .title {
+    /* background: tomato; */
+    text-align: center;
+    font-size: 50px;
+    border-bottom: 1px solid #000;
+    padding: 50px;
+}
+
+.wrapper .board {
+    display: flex;
+    background: yellow;
+    height: 65vh;
+
+    position: relative;
+}
+
+.wrapper .board .explain {
+    /* display: none; */
+    background: #eee;
+    width: 100%;
+    text-align: center;
+}
+
+.wrapper .board .explain .ex-title {
+
+}
+
+.wrapper .board .explain .ex-content {
+
+}
+
+.wrapper .board .explain .infor-title {
+
+}
+
+.wrapper .board .explain .infor-content {
+
+}
+
+.wrapper .board .cup {
+    display: none;
+}
+
+.wrapper .board #finish {
+    display: none;
+    width: 50%;
+    background: violet;
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.wrapper .bottom {
+    /* background: tomato; */
+    padding: 30px;
+    text-align: center;
+}
+
+.wrapper .bottom .start {
+    background: #eee;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 1.5em;
+    cursor: pointer;
+    /* margin-right: 100px; */
+}
