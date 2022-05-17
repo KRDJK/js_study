@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- RESET CSS -->
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css"> -->
+<!-- jQuery cdn -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<title></title>
+</head>
+<body>
+    <script>
+        $(() => {
+            // h1 색상 변경
+            $('h1').css('color', 'red');
+
+            // h2 색상 변경
+            $('#firstTitle').css('color', 'green');
+
+            // .nextTitle 색상 변경
+            $('h3').first().css('color', 'blue');
+
+            // obj3 자식들 변경
+            $('.obj3').children().css('font-weight', 'bold');
+
+            $('.theObj1').css('color', 'red');
+
+            // obj4의 이전, 다음 형제 변경.
+            $('.obj4').prev().css('text-align', 'right');
+
+            $('.obj4').next().css('color', 'orange');
+
+            // obj5의 부모 요소 변경
+            $('.obj5').parent().css('border', '2px dashed red');
+
+            // obj6의 부모의 자식들 중 obj6만 제외하고 변경. 
+            $('.obj6').parent().children().not('.obj6').css('text-align', 'center');
+            // $('.obj6').next().css('text-align', 'center');
+
+            // input 태그 변경
+            $('input').css('background', '#ddd');
+            $('input').css('border', '2px solid blue');
+
+
+        });
+    </script>
+
+    <div id="wrap">
+        <h1>돔 제어</h1>
+        <h2 id="firstTitle">선택자</h2>
+        <h3 class="nextTitle">부모 요소 선택자</h3>
+        <div>
+            <p class="obj1">현재 id가 "obj1"인 요소를 기준으로, 부모 요소는 ‘div’요소입니다.</p>
+        </div>
+        <h3>자식 요소 선택자</h3>
+        <ul class="obj3">
+            <li>리스트1</li>
+            <li class="theObj1">리스트2</li>
+            <li>리스트3</li>
+        </ul>
+        <h3>형 요소 선택자</h3>
+        <ul>
+            <li>리스트4</li>
+            <li class="obj4">리스트5</li>
+            <li>리스트6</li>
+        </ul>
+        <h3>동생 요소 선택자</h3>
+        <ul>
+            <li>리스트7</li>
+            <li class="obj5">리스트8</li>
+            <li>리스트9</li>
+        </ul>
+        <h3>형제 요소들 선택자</h3>
+        <ul>
+            <li>리스트10</li>
+            <li class="obj6">리스트11</li>
+            <li>리스트12</li>
+        </ul>
+        <h3>입력 요소 선택자</h3>
+        <p><label for="user_name">이름</label>
+            <input type="text" name="user_name" id="user_name" />
+        </p>
+    </div>
+</body>
+</html>
