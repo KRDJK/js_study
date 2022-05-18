@@ -17,18 +17,21 @@
     <div class="wrapper">
         <h1 class="title">야바위 게임~~</h1>
         <div class="board">
-            <div class="explain">
+            <!-- 시작 직후 보여줄 창 -->
+            <div class="explain hide">
                 <h2 class="ex-title">야바위 게임이란??</h2>
                 <p class="ex-content">여러 개의 컵 중 한 컵에 공을 넣고 현란하게 컵들을 섞어 공이 들어있는 컵이 어디로 갔는지 찾아내는 게임입니다.</p>
                 <h2 class="infor-title">그래서 어떻게 하면 되죠??</h2>
                 <p class="infor-content">처음 깜빡이는 컵을 주시하세요!<br>그곳에 공이 들어있습니다!</p>
             </div>
 
+            <!-- 야바위 애니메이션이 진행될 창 -->
             <div class="cup cup1">cup1</div>
             <div class="cup cup2">cup2</div>
             <div class="cup cup3">cup3</div>
 
-            <div id="finish">
+            <!-- 야바위 진행된 후 결과에 따라 보여줄 창 -->
+            <div id="finish hide">
                 <div class="win">정답입니다! 공을 들어있는 곳을 잘 찾으셨군요!</div>
                 <div class="lose">틀렸습니다! 공이 든 컵을 놓쳤군요!</div>
             </div>

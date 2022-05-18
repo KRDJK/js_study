@@ -40,10 +40,14 @@ input, button {
 }
 
 .wrapper .board .explain {
-    /* display: none; */
     background: #eee;
     width: 100%;
     text-align: center;
+}
+
+/* 숨길 때 */
+.wrapper .board .hide {
+    /* display: none; */
 }
 
 .wrapper .board .explain .ex-title {
@@ -95,7 +99,7 @@ input, button {
 }
 
 .wrapper .bottom .start:hover {
-    animation: move .5s linear infinite;
+    animation: move .4s linear infinite;
 }
 
 @keyframes move {
