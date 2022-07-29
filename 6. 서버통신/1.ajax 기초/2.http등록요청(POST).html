@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        label {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- form이 없다..!! form을 쓰면 무조건 동기화 처리 된다. form이 아니기 때문에 input의 value 속성이 크게 중요해지지 않는다. -->
+    <div class="register">
+        <label>
+            # 회원번호 : <input type="text" name="id">
+        </label>
+        <label>
+            # 계정명 : <input type="text" name="account">
+        </label>
+        <label>
+            # 비밀번호 : <input type="password" name="password">
+        </label>
+        <label>
+            # 이름 : <input type="text" name="userName">
+        </label>
+        <label>
+            # 주소 : <input type="text" name="address">
+        </label>
+        <label>
+            <button id="insert" type="button">회원가입</button>
+        </label>
+    </div>
+
+
+    <script>
+
+        const $insertBtn = document.getElementById('insert');
+        $insertBtn.onclick = e => {
+            e.preventDefault();
+
+
+            // POST 요청 흐름
+            const xhr = new XMLHttpRequest();
+            
+
+            // 요청 정보 설정 ('요청방식 명시', 'URI 명시')
+            xhr.open('POST', 'http://localhost:5000/user');
+
+
+            // POST 요청은 서버로 전송할 데이터를 만들어야 한다. 
+            // 당연히 포맷은 json이다. (서버로 json 형태로 보내야 함.)
+            const userData = {
+                id: document.querySelector('[name=id]').value,
+                account: document.querySelector('[name=account]').value,
+                password: document.querySelector('[name=password]').value,
+                userName: document.querySelector('[name=userName]').value,
+                address: document.querySelector('[name=address]').value
+            }
+
+            // console.log(userData);
+
+            // userData를 JSON 변환
+            const sendJSONData = JSON.stringify(userData);
+            // console.log(sendJSONData);
+
+
+            // 전송할 데이터의 mime type을 요청헤더 설정 => 이게 뭐하는거냐?? 
+                // 지금 전송하려는 데이터는 이상한 데이터가 아니라 json 타입의 파일이다라고 알려주는 것.
+            xhr.setRequestHeader('content-type', 'application/json');
+
+
+            // 서버 요청 전송 -->> 여기까지 되면 db.json에 실시간으로 반영된다.
+            xhr.send(sendJSONData);
+            
+        };
+
+    </script>
+</body>
+</html>

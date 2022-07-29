@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        section.info {
+            display: flex;
+            justify-content: space-evenly;
+            width: 100%;
+        }
+
+        .info {
+            width: 60%;
+        }
+
+        .detail {
+            width: 30%;
+            border: 2px dashed gray;
+            color: #444;
+            font-weight: 700;
+            padding: 20px;
+        }
+    </style>
+
+</head>
+<body>
+    
+    <button id="load">webmvc1 서버에서 score 데이터 불러오기</button>
+
+    <section class="info">
+        <ul class="content">
+            <!-- scoreList로 받은 데이터들을 배치하자 -->
+        </ul>
+        <div class="detail">
+            <div class="stuNum">학번: <span class="num"></span> </div>
+            <div class="name">이름: <span class="nm"></span> </div>
+            <div class="kor">국어: <span class="ko"></span> </div>
+            <div class="math">수학: <span class="ma"></span> </div>
+            <div class="eng">영어: <span class="en"></span> </div>
+            <div class="total">총점: <span class="to"></span> </div>
+            <div class="average">평균: <span class="av"></span> </div>
+            <div class="grade">학점: <span class="gr"></span> </div>
+        </div>
+        
+    </section>
+
+    <script>
+
+        function makeScoreListDOM(responseJsonData) {
+
+            const $scoreList = JSON.parse(responseJsonData);
+
+            const $content = document.querySelector('.content');
+
+            for (let score of $scoreList) {
+                const $li = document.createElement('li');
+
+                const {
+                    stuNum,
+                    name,
+                    kor,
+                    eng,
+                    math,
+                    total,
+                    average,
+                    grade
+                } = score;
+
+                $li.innerHTML = `# 학번: ${stuNum}, <a data-stuNum=${stuNum} class="detail-btn" href="#">이름: ${name}</a>, 국어: ${kor}, 수학: ${math}, 영어: ${eng}, 총점: ${total}, 평균: ${average}, 학점: ${grade}
+                <button class="del-btn">삭제</button>`;
+
+                $content.appendChild($li);
+            }
+
+
+            $content.addEventListener('click', e => {
+                if (!e.target.matches('.detail-btn') && !e.target.matches('.del-btn')) return;
+
+                if (e.target.matches('.del-btn')) {
+                    console.log(e.target.parentElement);
+
+                    const $delTarget = e.target.parentElement;
+
+                    e.preventDefault();
+                    const xhr = new XMLHttpRequest();
+
+                    xhr.open('DELETE', 'http://localhost:8181/api/v1/scores/' + e.target.previousElementSibling.dataset.stunum);
+
+                    xhr.send();
+
+                    xhr.onload = e => {
+                        if (xhr.status === 200) {
+                            // makeScoreListDOM(xhr.response);
+                            $content.removeChild($delTarget);
+                        } else {
+                            console.log('삭제 실패!!');
+                        }
+                    }
+                }
+
+
+                if (e.target.matches('.detail-btn')) {
+                    e.preventDefault();
+                    
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('GET', 'http://localhost:8181/api/v1/scores/' + e.target.dataset.stunum);
+    
+                    xhr.send();
+    
+                    xhr.onload = e => {
+                        if (xhr.status === 200) {
+                            const scoreObj = JSON.parse(xhr.response);
+    
+                            const {stuNum, name, kor, math, eng, total, average, grade} = scoreObj;
+    
+                            document.querySelector('.num').textContent = stuNum;
+                            document.querySelector('.nm').textContent = name;
+                            document.querySelector('.ko').textContent = kor;
+                            document.querySelector('.ma').textContent = math;
+                            document.querySelector('.en').textContent = eng;
+                            document.querySelector('.to').textContent = total;
+                            document.querySelector('.av').textContent = average;
+                            document.querySelector('.gr').textContent = grade;
+    
+                        } else {
+                            console.error('webmvc1 서버와의 통신 실패!');
+                        }
+                    }
+                };
+            });
+        }
+
+
+        const $loadbtn = document.getElementById('load');
+
+        $loadbtn.onclick = e => {
+            const xhr = new XMLHttpRequest();
+
+            xhr.open('GET', 'http://localhost:8181/api/v1/scores');
+
+            xhr.send();
+
+            xhr.onload = e => {
+                if (xhr.status === 200) {
+                    makeScoreListDOM(xhr.response);
+                } else {
+                    console.log('webmvc1 서버와의 통신 실패!');
+                }
+            };
+        };
+
+    </script>
+
+</body>
+</html>

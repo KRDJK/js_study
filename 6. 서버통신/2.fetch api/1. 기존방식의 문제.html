@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+
+        // 비동기 get 요청 처리 함수
+        function get(url) {
+            const xhr = new XMLHttpRequest();
+            
+            xhr.open('GET', url);
+            xhr.send();
+            
+
+            // 우리는 지금 함수를 등록만 해놓은 것이다. 브라우저가 이 이벤트를 실행하면 그 때 터진다.
+            xhr.onload = e => {
+                // 서버 응답 데이터를 리턴
+                console.log(xhr.response);
+
+                // 여기서 이어가야지만 원하는대로 렌더링이 가능해진다.
+
+                return JSON.parse(xhr.response); // get 함수의 리턴이 아니라.. onload의 event 함수의 리턴이다..
+            };
+        }
+
+
+
+
+
+        // 함수 실행부
+        (function() {
+
+            // 문제점 핵심!!! : 함수의 리턴값으로 응답데이터를 받는게 구조상 애초에 불가능하다.
+            const foundUser = get('http://localhost:5000/user/1');
+            const boardList = get('http://localhost:5000/board');
+
+            console.log('user:', foundUser);
+            console.log('board:', boardList);
+
+        })();
+
+    </script>
+</body>
+</html>
