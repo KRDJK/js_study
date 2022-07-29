@@ -70,7 +70,7 @@
                     grade
                 } = score;
 
-                $li.innerHTML = `# 학번: ${stuNum}, <a data-stuNum=${stuNum} class="detail-btn" href="#">이름: ${name}</a>, 국어: ${kor}, 수학: ${math}, 영어: ${eng}, 총점: ${total}, 평균: ${average}, 학점: ${grade}
+                $li.innerHTML = `# 학번: ${stuNum}, 이름: <a data-stuNum=${stuNum} class="detail-btn" href="#">${name}</a>, 국어: ${kor}, 수학: ${math}, 영어: ${eng}, 총점: ${total}, 평균: ${average}, 학점: ${grade}
                 <button class="del-btn">삭제</button>`;
 
                 $content.appendChild($li);
